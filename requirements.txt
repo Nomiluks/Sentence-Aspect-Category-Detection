@@ -59,7 +59,7 @@ decorator==4.3.0
 defusedxml==0.5.0
 dill==0.2.8.2
 distributed==1.23.1
-Django==1.11.17
+Django==1.11.29
 docutils==0.14
 editdistance==0.3.1
 elasticsearch==6.3.1
