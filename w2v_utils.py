@@ -5,7 +5,7 @@ import math, scipy
 import matplotlib.pyplot as plt
 from nltk.corpus import stopwords
 from tools import print_confusion_matrix
-from django.utils.encoding import smart_str, smart_unicode
+from django.utils.encoding import smart_str
 from bs4 import BeautifulSoup
 import xml.etree.ElementTree
 import tensorflow as tf
@@ -77,7 +77,7 @@ def getTraining_setFile(message, inputFile, out):
                                 s += "\t"+cat
                                 s = smart_str(s+"\n") 
                                 #myfile.write(s)
-    print message,count 
+    print ( message,count )
 
 #Extracting Sentences from Training Datasets
 def getSentencesFile(inputFile, out): 
@@ -100,7 +100,7 @@ def getSentencesFile(inputFile, out):
                                 myfile.write(s)
                                 count = count+1
                                 
-    print "Total Unique Sentences: ",count 
+    print ( "Total Unique Sentences: ",count )
 
     
 def clean_str(string):
@@ -157,14 +157,14 @@ def add_unknown_words(k=300):
 def getWordVecs(words):
     vecs = []
     for word in words:
-        #print word,"a" 
+        #print ( word,"a" )
         word = word.replace('\n', '')
-        #print word,"a"
+        #print ( word,"a")
         try:
             vecs.append(model[word].reshape((1,300)))
-            #print "found!",word
+            #print ( "found!",word)
         except KeyError:
-            print "not found!",word
+            print ( "not found!",word)
             continue
     vecs = np.concatenate(vecs)
     return np.array(vecs, dtype='float') #TSNE expects float type values
@@ -177,14 +177,14 @@ def word2vecInput(train,test,gold,yelp, shuffle=True, remove_stopwords=True):
     testSet  = test["review"].tolist()
     
     trainSentences = yelp+trainSet#+testSet+goldSet
-    print "Total Train Sentences: ",len(trainSentences)
-    print "Total Gold Test Sentences: ", len(goldSet)
+    print ( "Total Train Sentences: ",len(trainSentences))
+    print ( "Total Gold Test Sentences: ", len(goldSet))
     
     #cleaning sentences    
     trainingSentences = [review_to_wordlist(review,remove_stopwords) for review in trainSentences]
     goldSentences     = [review_to_wordlist(review,remove_stopwords) for review in goldSet]
     #vocablary = trainingSentences+goldSentences
-    #print "Total Vocablary of Sentences: ", len(vocablary)
+    #print ( "Total Vocablary of Sentences: ", len(vocablary))
     
     #Shuffle training sentences Sentences             
     if (shuffle):
@@ -193,7 +193,7 @@ def word2vecInput(train,test,gold,yelp, shuffle=True, remove_stopwords=True):
     return trainingSentences#, vocablary
 
 def tokenizerCleaner(yelp, remove_stopwords=True):
-    print "Total Train Sentences: ",len(yelp)    
+    print ("Total Train Sentences: ",len(yelp))    
     yelp = [review_to_wordlist(review,remove_stopwords) for review in yelp]  
     return yelp
 
@@ -231,10 +231,10 @@ def weight_variable(fan_in, fan_out, filename, boolean=False):
     initial=0
     if (boolean):
         stddev = np.sqrt(2.0/fan_in)
-        initial  = tf.random_normal([fan_in,fan_out], stddev=stddev)
+        initial  = tf.random.normal([fan_in,fan_out], stddev=stddev)
     else:
         initial  = np.loadtxt(filename).astype(np.float32)
-        #print initial.shape
+        #print ( initial.shape)
     return tf.Variable(initial)
 
 def resetModel():
@@ -248,7 +248,7 @@ def bias_variable(shape, filename, boolean=False):
         initial = tf.constant(0.1, shape=shape)
     else:
         initial  = np.loadtxt(filename).astype(np.float32) 
-        #print initial.shape
+        #print ( initial.shape)
     return tf.Variable(initial)
 
 def plot_classification_report(cr, title='Classification report ', with_avg_total=False, cmap=plt.cm.Blues):
@@ -284,15 +284,15 @@ def plot_classification_report(cr, title='Classification report ', with_avg_tota
     plt.xlabel('Measures')
     
 def confusionMatrix(text,Labels,y_pred, not_partial):
-    print Labels[7]
+    print ( Labels[7])
     y_actu = np.where(Labels[:]==1)[1]
-    print y_actu[7]
+    print ( y_actu[7])
     df = print_confusion_matrix(y_pred,y_actu)
-    print "\n",df
-    #print plt.imshow(df.as_matrix())
+    print ( "\n",df)
+    # print ( plt.imshow(df.as_matrix()))
     if not_partial:
-        print "\n",classification_report(y_actu, y_pred)
-    print "\n\t------------------------------------------------------\n"
+        print ( "\n",classification_report(y_actu, y_pred))
+    print ( "\n\t------------------------------------------------------\n")
 
 def normalize(probs):
     prob_factor = 1 / np.sum(probs)
@@ -315,7 +315,7 @@ def do_eval(sent, point, message, sess, correct_prediction, accuracy, pred, X_, 
         predictions = sess.run([correct_prediction], feed_dict={x: X_, y: y_})
         prediction  = tf.argmax(pred,1)
         labels = prediction.eval(feed_dict={x: X_, y: y_}, session=sess)
-        print "Overall Correct Predictions: ", accuracy.eval({x: X_, y: y_}),"\n"
+        print ( "Overall Correct Predictions: ", accuracy.eval({x: X_, y: y_}),"\n")
     
 
     #probabilities
@@ -370,34 +370,35 @@ def do_eval(sent, point, message, sess, correct_prediction, accuracy, pred, X_, 
             
         if debug == True and correct == False:
             if sent != "":
-                print point,"# ", sent
-            print "---- False Prediction ----"
+                print ( point,"# ", sent)
+            print ( "---- False Prediction ----")
+
         elif debug == True and correct == True:
             if sent != "":
-                print point,"# ", sent
-            print "---- Correct Prediction ----"
+                print ( point,"# ", sent)
+            print ( "---- Correct Prediction ----")
         
         if debug == True :
-            print "\nMulti-hot enocodings"
-            print "True Label: ",y_
-            print "Pred Label: ",output
-            print "TP:", TP, "FN:", FN, "TN:",TN , "FP:", FP
+            print ( "\nMulti-hot enocodings")
+            print ( "True Label: ",y_)
+            print ( "Pred Label: ",output)
+            print ( "TP:", TP, "FN:", FN, "TN:",TN , "FP:", FP)
 
-            print "\nCategory Labels"
-            print "True Labels     : ", expOut
-            print "Predicted Labels: ",cat[0][0][12-trueClasses:12], "\n-----------------------------------------------------\n"
+            print ( "\nCategory Labels")
+            print ( "True Labels     : ", expOut)
+            print ( "Predicted Labels: ",cat[0][0][12-trueClasses:12], "\n-----------------------------------------------------\n")
         
     return correct, output, TP, FP, TN, FN
     
     
 def splitDataset(examples, labels, split=0.8):  
-    data = zip(examples,labels)
+    data = list(zip(examples,labels))
     random.shuffle(data)
     data_length = int(round(split*len(data)))
     train = data[:data_length] #training set
     validation = data[data_length:]#validation set
-    train = zip(*train)
-    validation = zip(*validation)
+    train = list(zip(*train))
+    validation = list(zip(*validation))
     x_train = pd.Series(np.array(train[0]))
     y_train = np.array(train[1])
     x_val   = pd.Series(np.array(validation[0]))
@@ -409,7 +410,7 @@ def multiCategoryVectors(dataset, classes=12):
     for i in range(dataset.shape[0]):  
         vec = dataset.values[i][2:14]
         labels[i] = vec
-    print "Hot encoded vectors shape: ",labels.shape
+    print ( "Hot encoded vectors shape: ",labels.shape)
     return labels
         
 def clean(sentences, remove_stopwords=False):
@@ -430,8 +431,8 @@ def fixed_Vector_Size(first, second, chunk, fromStart=True):
         red_first  = first[strt:first.size]
         red_second = second[strt:first.size]
         
-    #print "Dimensions: ", red_first.shape, red_second.shape
-    #print red_first, red_second
+    #print ( "Dimensions: ", red_first.shape, red_second.shape)
+    #print ( red_first, red_second)
     return cosine(red_first, red_second)
 
 def firstN_use(first, chunk, fromStart=True):
@@ -457,8 +458,8 @@ def randChunkOfNSize(first, second, chunk):
     
     red_first  = first[randomChunk:(randomChunk+n)]
     red_second = second[randomChunk:(randomChunk+n)]
-    #print "Dimensions: ", red_first.shape, red_second.shape
-    #print red_first, red_second
+    #print ( "Dimensions: ", red_first.shape, red_second.shape)
+    #print ( red_first, red_second)
     return cosine(red_first, red_second)
 
 def wordAvg(vec, chunk):
@@ -491,10 +492,10 @@ def fixed_meanVector(vec, chunk):
     pad_size = math.ceil(float(vec.size)/R)*R - vec.size
     vec_padded = np.append(vec, np.zeros(pad_size)*np.NaN)
     
-    print "Org Vector: ",vec.size, "output Size: ",size, "Windows Size: ",R, "Padding size", pad_size
+    print ( "Org Vector: ",vec.size, "output Size: ",size, "Windows Size: ",R, "Padding size", pad_size)
     newVec = scipy.nanmean(vec_padded.reshape(-1,R), axis=1)
-    #print "New Vector shape: ",newVec.shape
-    #print newVec
+    #print ( "New Vector shape: ",newVec.shape)
+    #print ( newVec)
     return newVec
 
 def resized(data,M,N):    
@@ -517,7 +518,7 @@ def meanVec_two(vec, chunk):
     M      = vec.size
     N      = (vec.size*chunk)
     newVec = resized(vec,M,N)
-    #print "New Vector shape: ",newVec.shape,"\n", newVec
+    #print ( "New Vector shape: ",newVec.shape,"\n", newVec)
     return newVec
 
 def valueToPercent(M, N):
@@ -530,9 +531,9 @@ def sentenceStats(listData, name):
     for x in listData:
         avg += len(x)
         dataLengths.append(len(x))
-        #print len(x)
+        #print ( len(x)
     avg = avg/len(listData)
-    print name, np.std(dataLengths),"Max sentence: ",sequence_length, "Avg sentence",avg
+    print ( name, np.std(dataLengths),"Max sentence: ",sequence_length, "Avg sentence",avg)
     
     
 def stats(vector1, vector2, chunk):
