@@ -85,7 +85,7 @@ horast==0.4.0
 hpack==3.0.0
 hstspreload==2020.3.25
 html2text==2020.1.16
-httplib2==0.18.0
+httplib2==0.17.0
 httptools==0.1.1
 httpx==0.9.3
 humanfriendly==8.1
@@ -158,7 +158,7 @@ pexpect==4.8.0
 pickleshare==0.7.5
 piianalyzer==0.1.1
 pika==1.1.0
-Pillow==7.1.0
+Pillow==7.0.0
 plac==0.9.6
 pluggy==0.13.1
 polyglot==16.7.4
