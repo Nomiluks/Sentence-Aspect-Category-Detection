@@ -1,4 +1,4 @@
-# Sentence-Category-Detection
+# Sentence-Aspect-Category-Detection
 ### Multi-Lable category detection from restaurant reviews
 
 ![alt_text](images/acpect_category_detection.png "image_tooltip")
