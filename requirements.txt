@@ -19,7 +19,7 @@ backcall==0.1.0
 backports-datetime-fromisoformat==1.0.0
 beautifulsoup4==4.8.0
 blackstone==0.1.15
-bleach==3.1.4
+bleach==3.3.0
 blis==0.2.4
 boto==2.49.0
 boto3==1.12.31
