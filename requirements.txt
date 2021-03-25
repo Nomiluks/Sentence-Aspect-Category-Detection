@@ -200,7 +200,7 @@ python-socketio==4.4.0
 python-telegram-bot==11.1.0
 pytz==2019.3
 pywsd==1.2.4
-PyYAML==5.3.1
+PyYAML==5.4
 pyzmq==19.0.0
 questionary==1.5.1
 reporters-db==2.0.3
