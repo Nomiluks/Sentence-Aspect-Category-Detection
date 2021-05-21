@@ -238,7 +238,7 @@ static-typing==0.2.7
 staticfg==0.9.4
 tensorboard==2.1.1
 tensorboardX==2.0
-tensorflow==2.1.0
+tensorflow==2.5.0
 tensorflow-addons==0.8.3
 tensorflow-estimator==2.1.0
 tensorflow-hub==0.7.0
