@@ -267,7 +267,7 @@ tzlocal==1.5.1
 ujson==1.35
 unicodecsv==0.13.0
 Unidecode==1.1.1
-urllib3==1.25.9
+urllib3==1.26.5
 us==2.0.2
 uvloop==0.14.0
 version-query==1.1.0
