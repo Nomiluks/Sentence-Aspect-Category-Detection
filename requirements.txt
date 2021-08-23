@@ -141,7 +141,7 @@ nbconvert==5.6.1
 nbformat==5.0.5
 networkx==2.4
 nltk==3.5
-notebook==6.1.5
+notebook==6.4.1
 num2words==0.5.10
 numpy==1.19.1
 oauth2client==4.1.3
