@@ -187,7 +187,7 @@ pykwalify==1.7.0
 pymongo==3.8.0
 pyocr==0.7.2
 pyparsing==2.4.7
-PyPDF2==1.26.0
+PyPDF2==1.27.5
 pyquickhelper==1.9.3418
 pyrsistent==0.16.0
 PySocks==1.7.1
