@@ -87,7 +87,7 @@ hstspreload==2020.3.25
 html2text==2020.1.16
 httplib2==0.18.0
 httptools==0.1.1
-httpx==0.9.3
+httpx==0.23.0
 humanfriendly==8.1
 hyperframe==5.2.0
 hyperlink==19.0.0
