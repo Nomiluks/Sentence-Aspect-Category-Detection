@@ -264,7 +264,7 @@ typing==3.7.4.1
 typing-extensions==3.7.4.2
 typing-inspect==0.5.0
 tzlocal==1.5.1
-ujson==1.35
+ujson==5.4.0
 unicodecsv==0.13.0
 Unidecode==1.1.1
 urllib3==1.25.9
