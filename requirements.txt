@@ -123,7 +123,7 @@ klein==17.10.0
 langdetect==1.0.8
 lexnlp==1.7.0
 libcst==0.3.4
-lxml==4.5.2
+lxml==4.9.1
 mailchimp3==3.0.13
 manage.py==0.2.10
 Markdown==3.2.1
