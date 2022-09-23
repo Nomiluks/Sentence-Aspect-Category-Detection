@@ -165,7 +165,7 @@ polyglot==16.7.4
 preshed==2.0.1
 prometheus-client==0.7.1
 prompt-toolkit==3.0.5
-protobuf==3.11.3
+protobuf==3.18.3
 psycopg2-binary==2.8.4
 ptyprocess==0.6.0
 py==1.8.2
