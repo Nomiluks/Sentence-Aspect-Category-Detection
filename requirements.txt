@@ -40,7 +40,7 @@ commonregex==1.5.4
 compound-word-splitter==0.4
 conllu==4.1
 constantly==15.1.0
-cryptography==2.8
+cryptography==39.0.1
 cycler==0.10.0
 cymem==2.0.3
 datefinder-lexpredict==0.6.2
